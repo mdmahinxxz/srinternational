@@ -1,0 +1,435 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  background: #0b0f19;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    #0b0f19;
+  background-size: 44px 44px;
+}
+
+.site-shell::before {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: '';
+  background:
+    linear-gradient(115deg, transparent 0%, rgba(0, 229, 255, 0.045) 42%, transparent 58%),
+    radial-gradient(circle at 18% 24%, rgba(0, 229, 255, 0.08), transparent 25%);
+  mix-blend-mode: screen;
+  opacity: 0.68;
+  animation: backgroundDrift 18s ease-in-out infinite alternate;
+}
+
+.site-shell > * {
+  position: relative;
+  z-index: 1;
+}
+
+button,
+a,
+input,
+select {
+  border-radius: 0;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.field {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.045);
+  padding: 1rem 1rem;
+  color: #ffffff;
+  outline: none;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.field::placeholder {
+  color: rgba(127, 145, 168, 0.82);
+}
+
+.field:focus {
+  border-color: #00e5ff;
+  background: rgba(0, 229, 255, 0.06);
+  box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.12);
+}
+
+select.field {
+  color: #ffffff;
+}
+
+select.field option {
+  background: #101826;
+  color: #ffffff;
+}
+
+.nav-enter {
+  animation: navDrop 680ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.brand-pulse {
+  animation: neonPulse 3.2s ease-in-out infinite;
+}
+
+.hero-aurora {
+  background-size: 135% 135%;
+  animation: auroraSweep 13s ease-in-out infinite alternate;
+}
+
+.orbital-glow {
+  animation: orbitalFloat 12s ease-in-out infinite;
+}
+
+.reveal-up,
+.section-reveal,
+.estimator-panel,
+.partner-hub {
+  animation: revealUp 820ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.delay-100 {
+  animation-delay: 110ms;
+}
+
+.delay-200 {
+  animation-delay: 220ms;
+}
+
+.delay-300 {
+  animation-delay: 330ms;
+}
+
+.delay-400 {
+  animation-delay: 440ms;
+}
+
+.panel-float {
+  animation: panelFloat 6.5s ease-in-out infinite;
+}
+
+.hero-image-frame img {
+  filter: saturate(1.08) contrast(1.03);
+  transform: scale(1.01);
+  transition:
+    filter 500ms ease,
+    transform 700ms ease;
+}
+
+.hero-image-frame:hover img {
+  filter: saturate(1.18) contrast(1.08);
+  transform: scale(1.055);
+}
+
+.hero-image-frame::before {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  content: '';
+  border: 1px solid rgba(0, 229, 255, 0.16);
+  box-shadow: inset 0 0 38px rgba(0, 229, 255, 0.08);
+}
+
+.service-image,
+.partner-image img {
+  filter: saturate(0.95) contrast(1.06) brightness(0.9);
+  transform: scale(1.01);
+  transition:
+    filter 520ms ease,
+    transform 760ms ease;
+}
+
+.service-card:hover .service-image,
+.partner-hub:hover .partner-image img {
+  filter: saturate(1.14) contrast(1.1) brightness(1);
+  transform: scale(1.06);
+}
+
+.service-card > div:first-child,
+.partner-image {
+  position: relative;
+}
+
+.service-card > div:first-child::after,
+.partner-image::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: '';
+  background:
+    linear-gradient(180deg, transparent 38%, rgba(11, 15, 25, 0.82)),
+    linear-gradient(120deg, rgba(0, 229, 255, 0.16), transparent 40%);
+  opacity: 0.92;
+}
+
+.partner-image {
+  box-shadow: inset 0 0 0 1px rgba(0, 229, 255, 0.08);
+}
+
+.scan-card,
+.service-card,
+.micro-card,
+.selector-row,
+.estimator-panel,
+.partner-hub {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-card::after,
+.service-card::after,
+.micro-card::after,
+.selector-row::after,
+.estimator-panel::after,
+.partner-hub::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: '';
+  background: linear-gradient(120deg, transparent 30%, rgba(0, 229, 255, 0.16), transparent 70%);
+  opacity: 0;
+  transform: translateX(-120%);
+  transition:
+    opacity 220ms ease,
+    transform 640ms ease;
+}
+
+.scan-card:hover::after,
+.service-card:hover::after,
+.micro-card:hover::after,
+.selector-row:hover::after,
+.estimator-panel:hover::after,
+.partner-hub:hover::after {
+  opacity: 1;
+  transform: translateX(120%);
+}
+
+.service-card {
+  animation: revealUp 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.service-card:nth-child(1) {
+  animation-delay: 90ms;
+}
+
+.service-card:nth-child(2) {
+  animation-delay: 190ms;
+}
+
+.service-card:nth-child(3) {
+  animation-delay: 290ms;
+}
+
+.icon-orbit {
+  transition:
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.service-card:hover .icon-orbit {
+  transform: rotate(-4deg) scale(1.06);
+  box-shadow: 0 0 34px rgba(0, 229, 255, 0.22);
+}
+
+.signal-strip {
+  animation: signalBreathe 3.4s ease-in-out infinite;
+}
+
+.price-pulse {
+  position: relative;
+  overflow: hidden;
+  animation: priceGlow 2.8s ease-in-out infinite;
+}
+
+.price-pulse::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -30%;
+  width: 22%;
+  pointer-events: none;
+  content: '';
+  background: linear-gradient(90deg, transparent, rgba(234, 251, 255, 0.18), transparent);
+  transform: skewX(-16deg);
+  animation: meterSweep 3.8s ease-in-out infinite;
+}
+
+.cta-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-shine::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: '';
+  background: linear-gradient(105deg, transparent 28%, rgba(255, 255, 255, 0.58) 48%, transparent 68%);
+  transform: translateX(-120%);
+  transition: transform 620ms ease;
+}
+
+.cta-shine:hover::after {
+  transform: translateX(120%);
+}
+
+@keyframes navDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes neonPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 22px rgba(0, 229, 255, 0.22);
+  }
+
+  50% {
+    box-shadow: 0 0 42px rgba(0, 229, 255, 0.48);
+  }
+}
+
+@keyframes auroraSweep {
+  0% {
+    background-position: 0% 50%;
+    opacity: 0.86;
+  }
+
+  100% {
+    background-position: 100% 52%;
+    opacity: 1;
+  }
+}
+
+@keyframes orbitalFloat {
+  0%,
+  100% {
+    transform: translate(-50%, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-48%, 18px) scale(1.05);
+  }
+}
+
+@keyframes panelFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes signalBreathe {
+  0%,
+  100% {
+    box-shadow: inset 0 0 0 rgba(0, 229, 255, 0), 0 0 0 rgba(0, 229, 255, 0);
+  }
+
+  50% {
+    box-shadow: inset 0 0 26px rgba(0, 229, 255, 0.08), 0 0 30px rgba(0, 229, 255, 0.08);
+  }
+}
+
+@keyframes priceGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(0, 229, 255, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 34px rgba(0, 229, 255, 0.12);
+  }
+}
+
+@keyframes meterSweep {
+  0%,
+  18% {
+    left: -32%;
+  }
+
+  58%,
+  100% {
+    left: 115%;
+  }
+}
+
+@keyframes backgroundDrift {
+  from {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(2%, 1%, 0) scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .field {
+    padding: 0.9rem 0.85rem;
+  }
+
+  .hero-image-frame img,
+  .hero-image-frame .relative {
+    min-height: 21rem;
+  }
+}
